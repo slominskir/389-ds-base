@@ -1,5 +1,11 @@
+ARG CUSTOM_CRT_URL
+
 FROM quay.io/389ds/ci-images:fedora
 
 # dscontainer needs:
-RUN dnf install -y openssl nss-tools
+RUN if [ -z "$CUSTOM_CRT_URL" ] ; then echo "No custom cert needed"; else \
+          curl -o /etc/pki/ca-trust/source/anchors/customcert.crt $CUSTOM_CRT_URL \
+          && update-ca-trust \
+          ; fi \
+          && dnf install -y openssl nss-tools
 

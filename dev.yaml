@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Containerfile-dev
+      args:
+        CUSTOM_CRT_URL: ${CUSTOM_CRT_URL}
     hostname: dirsrv
     container_name: dirsrv
     ports:
