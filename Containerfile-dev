@@ -1,0 +1,5 @@
+FROM quay.io/389ds/ci-images:fedora
+
+# dscontainer needs:
+RUN dnf install -y openssl nss-tools
+
