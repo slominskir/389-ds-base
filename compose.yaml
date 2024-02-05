@@ -1,0 +1,18 @@
+services:
+  dirsrv:
+    image: quay.io/389ds/ci-images:fedora
+    hostname: dirsrv
+    container_name: dirsrv
+    ports:
+      - "3389:3389"
+      - "3636:3636"
+    init: true
+    entrypoint: ["sleep", "infinity"]
+    environment:
+      CC: gcc
+      CXX: g++
+      CFLAGS: "-O2 -g"
+      CXXFLAGS: ${CXXFLAGS}
+      LDFLAGS: ${LDFLAGS}
+    volumes:
+      - ./:/src
