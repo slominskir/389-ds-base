@@ -1,6 +1,5 @@
-ARG CUSTOM_CRT_URL
-
 FROM quay.io/389ds/ci-images:fedora
+ARG CUSTOM_CRT_URL
 
 RUN if [ -z "$CUSTOM_CRT_URL" ] ; then echo "No custom cert needed"; else \
           curl -o /etc/pki/ca-trust/source/anchors/customcert.crt $CUSTOM_CRT_URL \
